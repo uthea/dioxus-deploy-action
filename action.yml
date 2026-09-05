@@ -43,7 +43,7 @@ runs:
 
     - name: Build Project 🎁
       shell: bash
-      run: cd ${{ inputs.rootPath }} && dx bundle --${{ inputs.buildMode }} && cp ./${{ inputs.outDirectory }}/public/index.html ./${{ inputs.outDirectory }}/public/404.html
+      run: cd ${{ inputs.rootPath }} && dx bundle --${{ inputs.buildMode }} --out-dir ./${{ inputs.outDirectory }}  && cp ./${{ inputs.outDirectory }}/public/index.html ./${{ inputs.outDirectory }}/public/404.html
 
     - name: Deploy Project 🚀
       uses: JamesIves/github-pages-deploy-action@v4.4.1
