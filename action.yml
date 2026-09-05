@@ -25,6 +25,11 @@ inputs:
     description: "dx cli version"
     required: true
     default: "0.7.1"
+  basePath:
+    description: "The base path the build will fetch assets relative to. This will override the base path set in the `dioxus` config"
+    required: true
+    default: ""
+    
 
 runs:
   using: "composite"
@@ -43,7 +48,7 @@ runs:
 
     - name: Build Project 🎁
       shell: bash
-      run: cd ${{ inputs.rootPath }} && dx bundle --${{ inputs.buildMode }} --out-dir ./${{ inputs.outDirectory }}  && cp ./${{ inputs.outDirectory }}/public/index.html ./${{ inputs.outDirectory }}/public/404.html
+      run: cd ${{ inputs.rootPath }} && dx bundle --${{ inputs.buildMode }} --out-dir ./${{ inputs.outDirectory }} --base-path ${{ inputs.basePath }} && cp ./${{ inputs.outDirectory }}/public/index.html ./${{ inputs.outDirectory }}/public/404.html
 
     - name: Deploy Project 🚀
       uses: JamesIves/github-pages-deploy-action@v4.4.1
