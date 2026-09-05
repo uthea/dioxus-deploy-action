@@ -21,6 +21,10 @@ inputs:
     description: "Source code root path [default: '.']"
     required: true
     default: "."
+  version:
+    description: "dx cli version"
+    required: true
+    default: "0.7.1"
 
 runs:
   using: "composite"
@@ -35,7 +39,7 @@ runs:
     - uses: Swatinem/rust-cache@v2
     - name: Install Dioxus-CLI
       shell: bash
-      run: cargo install dioxus-cli --locked
+      run: cargo install dioxus-cli@${{ inputs.version }} --locked
 
     - name: Build Project 🎁
       shell: bash
